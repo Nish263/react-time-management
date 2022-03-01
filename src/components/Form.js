@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const initialState = { task: "", hr: "" };
-
-export const Form = ({ addNewTask }) => {
+const weeklyHours = 24 * 7;
+export const Form = ({ addNewTask, total }) => {
   const [newTask, setNewTask] = useState(initialState);
 
   const handleOnChange = (e) => {
@@ -12,28 +12,33 @@ export const Form = ({ addNewTask }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
+    if (newTask.hr < 1) {
+      return alert("please enter a positive hours number");
+    }
+    if (total + newTask.hr > weeklyHours) {
+      return alert("you have exceeded the weekly hours");
+    }
     addNewTask(newTask);
 
     setNewTask(initialState); //this will display empty input after submitting
   };
 
   return (
-    <div class="row">
-      <div class="col">
-        <div class="form-box py-5">
+    <div className="row">
+      <div className="col">
+        <div className="form-box py-5">
           <form
             onSubmit={handleOnSubmit}
-            class="row row-cols-md-auto g-3 d-flex justify-content-center"
+            className="row row-cols-md-auto g-3 d-flex justify-content-center"
           >
-            <div class="col-12">
-              <label class="visually-hidden" for="inlineFormInputGroupUsername">
-                Your task
-              </label>
+            <div className="col-12">
+              <label className="visually-hidden">Your task</label>
 
-              <div class="input-group">
+              <div className="input-group">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   name="task"
                   value={newTask.task}
                   onChange={handleOnChange}
@@ -44,14 +49,12 @@ export const Form = ({ addNewTask }) => {
               </div>
             </div>
 
-            <div class="col-12">
-              <label class="visually-hidden" for="inlineFormInputGroupUsername">
-                hours
-              </label>
-              <div class="input-group">
+            <div className="col-12">
+              <label className="visually-hidden">hours</label>
+              <div className="input-group">
                 <input
                   type="number"
-                  class="form-control"
+                  className="form-control"
                   name="hr"
                   value={newTask.hr}
                   onChange={handleOnChange}
@@ -61,8 +64,8 @@ export const Form = ({ addNewTask }) => {
                 />
               </div>
             </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">
+            <div className="col-12">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </div>

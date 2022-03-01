@@ -7,33 +7,33 @@ export const TaskList = ({
 }) => {
   console.log(taskList);
   return (
-    <div class="col-md-6 mb-5">
-      <h2 class="text-center"> Task list</h2>
-      <div class="list-items">
-        <table class="table table-striped table-hover">
+    <div className="col-md-6 mb-5">
+      <h2 className="text-center"> Task list</h2>
+      <div className="list-items">
+        <table className="table table-striped table-hover">
           <tbody id="taskList">
             {taskList.map((item, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>
                     <input type="checkbox" name="" id="" />
                     {item.task}
                   </td>
                   <td>{item.hr}</td>
-                  <td class="text-end">
+                  <td className="text-end">
                     <button
-                      class="btn btn-sm btn-danger"
+                      className="btn btn-sm btn-danger"
                       onClick={() => handleOnDeletetaskList(i)}
                     >
-                      <i class="fa-solid fa-trash-can" title=" delete"></i>
+                      <i className="fa-solid fa-trash-can" title="delete"></i>
                     </button>
                     <button
-                      class="btn btn-sm btn-warning"
+                      className="btn btn-sm btn-warning"
                       onClick={() => markAsNotToDo(i)}
                     >
                       <i
-                        class="fa-solid fa-arrow-right "
-                        title="mark as bad list"
+                        className="fa-solid fa-arrow-right-long"
+                        title="marks as to do"
                       ></i>
                     </button>
                   </td>
@@ -43,7 +43,6 @@ export const TaskList = ({
           </tbody>
         </table>
       </div>
-      ;
     </div>
   );
 };

@@ -50,14 +50,16 @@ function App() {
   const ttlTaskHr = taskList.reduce((subttl, item) => subttl + item.hr, 0);
   const ttlBadHours = badList.reduce((acc, curr) => acc + curr.hr, 0);
 
+  const total = ttlBadHours + ttlTaskHr;
+
   return (
-    <div class="wrapper">
-      <div class="container">
+    <div className="wrapper">
+      <div className="container">
         {/* <!-- top title --> */}
         <Title />
 
         {/* <!-- form area --> */}
-        <Form addNewTask={addNewTask} />
+        <Form addNewTask={addNewTask} total={total} />
         {/* <!-- list area --> */}
         <div className="row">
           <TaskList
@@ -69,9 +71,10 @@ function App() {
             badList={badList}
             markAsToDo={markAsToDo}
             handleOnDeleteBadList={handleOnDeleteBadList}
+            ttlBadHours={ttlBadHours}
           />
         </div>
-        <TotalHours total={ttlBadHours + ttlTaskHr} />
+        <TotalHours total={total} />
       </div>
     </div>
   );
