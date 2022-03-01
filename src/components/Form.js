@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { TaskList } from "./TaskList";
 
 const initialState = { task: "", hr: "" };
 
@@ -14,6 +13,7 @@ export const Form = ({ addNewTask }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     addNewTask(newTask);
+
     setNewTask(initialState); //this will display empty input after submitting
   };
 
