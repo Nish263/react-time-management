@@ -43,7 +43,7 @@ export const BadList = ({
           </tbody>
         </table>
       </div>
-      <div className="ttl-bad text-end text-success">
+      <div className="ttl-bad text-end text-danger">
         Total time saved = <span id="totalBadHrs"> {ttlBadHours}</span> hr
       </div>
     </div>
